@@ -1,0 +1,167 @@
+- Class: meta
+  Course: Matematika a Logika v R
+  Lesson: Vektory
+  Author: Ivan Petrusek, Jan Schubert
+  Type: Standard
+  Organization: Fakula socialnich ved Univerzity Karlovy
+  Version: 2.4.5
+
+- Class: text
+  Output: Tato lekce byla inspirovana kurzem R Programming (https://swirlstats.com/)
+
+- Class: text
+  Output: Nejjednodussi a nejcasteji pouzivanym datovym objektem v R je vektor.
+
+- Class: text
+  Output: 'Existuji dva typy vektoru: atomicke vektory a listy. Atomicky vektor 
+    obsahuje pouze jeden typ dat (napr. pouze cisla nebo pouze text). List muze 
+    obsahovat ruzne typy dat v jednom objektu (napr. soucasne cislo a text). 
+    Ted se podivame na atomicke vektory a listy budeme resit pozdeji.'
+
+- Class: text
+  Output: 'Ciselny vektor (numeric vector) je jeden z typu vektoru. Ostatni typy 
+    mohou byt: logicke (logical), textove (character), cela cisla (integer), a 
+    komplexni cisla (complex). V teto lekci se zamerime na ciselne a textove vektory.'
+
+- Class: text
+  Output: Zacneme textovymi vektory (character vector). Textovy vektor vytvorime 
+    jako jakykoliv jiny vektor, ale jednotlive prvky je potreba psat v uvozovkach 
+    (dvojite nebo jednoduche uvozovky).
+
+- Class: cmd_question
+  Output: 'Vytvorte textovy vektor cimrman_vynalezy, ktery obsahuje prvky: 
+    dvojdilne plavky, klavirni vytah, dynamit a jarovka.'
+  CorrectAnswer: cimrman_vynalezy <- c("dvojdilne plavky", "klavirni vytah", "dynamit", "jarovka")
+  AnswerTests: omnitest(correctExpr='cimrman_vynalezy <- c("dvojdilne plavky", "klavirni vytah", "dynamit", "jarovka")')
+  Hint: Vzpomente si, ze funckce c() se pouziva k vytvoreni vektoru. Pokud zapomenete,
+    jak se tato funkce pouziva, muzete napsat do konzole ?c a zobrazit si napovedu 
+    k teto funkci. hodnoty textoveho vektoru musi byt uvedeny v zavorkach. 
+    Nezapomente priradit vas vysledek k novemu objektu cimrman_vynalezy.
+
+- Class: cmd_question
+  Output: K urceni tridy objektu pouzivame funkci class. Podivejte se na tridu vektoru
+    cimrman_vynalezy
+  CorrectAnswer: class(cimrman_vynalezy)
+  AnswerTests: omnitest(correctExpr='class(cimrman_vynalezy)')
+  Hint: Muzete pouzit ?class pro vice informaci.
+
+- Class: mult_question
+  Output: Jaka je trida vektoru cimrman_vynalezy?
+  CorrectAnswer: character
+  AnswerChoices: numeric;character;integer;logical
+  AnswerTests: omnitest(correctVal='character', correctExpr='2')
+  Hint: Napiste svoji odpoved a stisknete Enter.
+  
+- Class: text
+  Output: Ted se budeme podrobneji venovat ciselnym vektorum. Ciselne vektory 
+    mohou obsahovat cela cisla (integers, napr. -2) nebo cisla desetinna 
+    (double, napr. -2.1).
+
+- Class: cmd_question
+  Output: Vyvorte numericky vektor se jmenem num_vect, ktery bude obsahovat cisla 
+    0.5, 55, -10 a 6.
+  CorrectAnswer: num_vect <- c(0.5, 55, -10, 6)
+  AnswerTests: omnitest(correctExpr='num_vect <- c(0.5, 55, -10, 6)')
+  Hint: Vzpomente si, ze funckce c() se pouziva k vytvoreni vektoru. Pokud zapomenete,
+    jak se tato funkce pouziva, muzete napsat do konzole ?c a zobrazit si napovedu 
+    k teto funkci. Nezapomente priradit vas vysledek k novemu objektu num_vect.
+
+- Class: cmd_question
+  Output: Vytisknete obsah vektoru num_vect.
+  CorrectAnswer: print(num_vect)
+  AnswerTests: omnitest(correctExpr='print(num_vect)')
+  Hint: Vzpomente si, ze muzete vytisknout obsah jakehokoliv objektu pomoci 
+    funkce print.
+
+- Class: cmd_question
+  Output: Obsah objektu muzete take vytisknout tim, ze napisete jeho nazev a 
+    stisknete Enter. Vytisknete jeste jednou obsah objektu num_vect.
+  CorrectAnswer: num_vect
+  AnswerTests: omnitest(correctExpr='num_vect')
+  Hint: Vzpomente si, ze muzete vytisknout obsah jakehokoliv objektu tak, ze 
+    napisete jeho nazev (bez uvozovek) a stisknete Enter.
+    
+- Class: cmd_question
+  Output: Ted vytvorte druhy numericky vektor se jmenem hektor, ktery bude obsahovat 
+    cisla 1.1, 9, 5 a -4.
+  CorrectAnswer: hektor <- c(1.1, 9, 5, -4)
+  AnswerTests: omnitest(correctExpr='hektor <- c(1.1, 9, 5, -4)')
+  Hint: Vzpomente si, ze funckce c() se pouziva k vytvoreni vektoru. Pokud zapomenete,
+    jak se tato funkce pouziva, muzete napsat do konzole ?c a zobrazit si napovedu 
+    k teto funkci. Nezapomente priradit vas vysledek k novemu objektu hektor.
+
+- Class: cmd_question
+  Output: Nyni od tohoto noveho vektoru odectete cislo 2.3 a ulozte do noveho 
+    vektoru hektor_minus.
+  CorrectAnswer: hektor_minus <- hektor - 2.3
+  AnswerTests: omnitest(correctExpr='hektor_minus <- hektor - 2.3')
+  Hint: Nezapomente priradit vas vysledek k novemu objektu hektor_minus.
+
+- Class: cmd_question
+  Output: Vytisknete obsah vektoru hektor_minus.
+  CorrectAnswer: print(hektor_minus)
+  AnswerTests: omnitest(correctExpr='print(hektor_minus)')
+  Hint: Vzpomente si, ze muzete vytisknout obsah jakehokoliv objektu pomoci 
+    funkce print.
+
+- Class: mult_question
+  Output: Jake bude hodnota prvniho cisla vektoru hektor_minus
+  CorrectAnswer: -1.2
+  AnswerChoices: 1.1;-1.2;3.4
+  AnswerTests: omnitest(correctVal='-1.2', correctExpr='2')
+  Hint: Napiste svoji odpoved a stisknete Enter.
+
+- Class: cmd_question
+  Output: Vynasobte vektor hektor cislem 0.5 a ulozte vysledek do noveho 
+    vektoru hektor_krat.
+  CorrectAnswer: hektor_krat <- hektor * 0.5
+  AnswerTests: omnitest(correctExpr='hektor_krat <- hektor * 0.5')
+  Hint: Nezapomente priradit vas vysledek k novemu objektu hektor_krat.
+
+- Class: cmd_question
+  Output: Vytisknete obsah vektoru hektor_krat.
+  CorrectAnswer: print(hektor_krat)
+  AnswerTests: omnitest(correctExpr='print(hektor_krat)')
+  Hint: Vzpomente si, ze muzete vytisknout obsah jakehokoliv objektu pomoci 
+    funkce print.
+
+- Class: mult_question
+  Output: Jake bude hodnota tretiho cisla vektoru hektor_krat
+  CorrectAnswer: 2.5
+  AnswerChoices: 0.55;4.5;2.5
+  AnswerTests: omnitest(correctVal='2.5', correctExpr='3')
+  Hint: Napiste svoji odpoved a stisknete Enter.
+
+- Class: text
+  Output: Nyni se zamerime na operace vektoru s vektory.
+    
+- Class: cmd_question
+  Output: Vydelte vektror hektor vektorem num_vect a ulozte vysledek do noveho 
+    vektoru hektor_deleno.
+  CorrectAnswer: hektor_deleno <- hektor / num_vect
+  AnswerTests: omnitest(correctExpr='hektor_deleno <- hektor / num_vect')
+  Hint: Dva vektory od sebe vydelite stejne jako vektor se skalarem. Pouze 
+    zamente vektor za skalar. Nezapomente priradit vas vysledek k novemu objektu 
+    hektor_deleno.
+    
+- Class: mult_question
+  Output: Kolik myslite, ze bude mit vektor hektor_deleno prvku?
+  CorrectAnswer: 4
+  AnswerChoices: 1;2;3;4
+  AnswerTests: omnitest(correctVal='4', correctExpr='4')
+  Hint: Napiste svoji odpoved a stisknete Enter.
+
+- Class: text
+  Output: Jako posledni si ukazeme skalarni soucin vektoru.
+  
+- Class: cmd_question
+  Output: Vypocitejte skalarni soucin vektoru hektor a hektor_deleno a priradte 
+    vysledek do vektoru skalar_soucin.
+  CorrectAnswer: skalar_soucin <- sum(hektor * hektor_deleno)
+  AnswerTests: omnitest(correctExpr='skalar_soucin <- sum(hektor * hektor_deleno)')
+  Hint: Skalarni soucin vypocitate tak, ze vynasobite jednotlive prvky obou vektoru a
+    tyto cisla sectete. Pouzijte ?sum pro vice informaci. Vysledek nezapomente 
+    ulozit do noveho vektoru skalar_soucin.
+    
+- Class: text
+  Output: To je vse na vektory. Doufame, ze jste se dozvedeli neco zajimaveho :)

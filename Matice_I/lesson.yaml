@@ -1,0 +1,165 @@
+- Class: meta
+  Course: Matematika a Logika v R
+  Lesson: Matice I.
+  Author: Ivan Petrusek, Jan Schubert
+  Type: Standard
+  Organization: Fakula socialnich ved Univerzity Karlovy
+  Version: 2.4.3
+
+- Class: text
+  Output: V tomto cviceni se budeme zabyvat maticemi. Nejdrive si predstavime co to matice je a jak ji muzeme v R vytvorit.
+  
+- Class: text
+  Output: Matice je nekolik vektoru, ktere jsou spojeny do jedne struktury (tabulky). 
+  
+- Class: cmd_question
+  Output: Rekneme, ze nas zajima sledovanost (v milionech) a hodnoceni divaku poslednich 4 serii serialu The Big Bang Theory.
+    Vytvorte numericky vektor o hodnotach 20.4, 19.0, 18.6 a 17.3 a nazvete ho sledovanost.
+  CorrectAnswer: sledovanost <- c(20.4, 19.0, 18.6, 17.3)
+  AnswerTests: omnitest(correctExpr='sledovanost <- c(20.4, 19.0, 18.6, 17.3)')
+  Hint: Vzpomente si, ze funckce c() se pouziva k vytvoreni vektoru. Pokud zapomenete,
+    jak se tato funkce pouziva, muzete napsat do konzole ?c a zobrazit si napovedu 
+    k teto funkci. Nezapomente priradit vas vysledek k novemu objektu ratings.
+    
+- Class: cmd_question
+  Output: Nyni vytvorte numericky vektor o hodnotach 67, 83, 75 a 82 a nazvete ho hodnoceni_divaku.
+  CorrectAnswer: hodnoceni_divaku <- c(67, 83, 75, 82)
+  AnswerTests: omnitest(correctExpr='hodnoceni_divaku <- c(67, 83, 75, 82)')
+  Hint: Vzpomente si, ze funckce c() se pouziva k vytvoreni vektoru. Pokud zapomenete,
+    jak se tato funkce pouziva, muzete napsat do konzole ?c a zobrazit si napovedu 
+    k teto funkci. Nezapomente priradit vas vysledek k novemu objektu ratings.
+    
+- Class: text
+  Output: Vytvorili jsme tedy 2 vektory. Co kdyz se ale chceme podivat na oba vektory v jedne tabulce a porovnat, jak 
+    spolu sledovanost a hodnoceni souvisi?
+
+- Class: text
+  Output: V R k vytvoreni matice muzeme pouzit nekolik zbusobu. My si nejprve ukazeme funkci matrix.
+  
+- Class: cmd_question
+  Output: V R k vytvoreni matice muzeme pouzit nekolik zbusobu. My si nejprve ukazeme funkci matrix. Podivejte se na 
+    napovedu k funkci matrix.
+  CorrectAnswer: ?matrix
+  AnswerTests: omnitest(correctExpr='?matrix')
+  Hint: Napovedu muzete zobrazit pomoci ?.
+
+- Class: cmd_question
+  Output: Nejprve potrebujeme specifikovat, jakymi daty chceme matici naplnit. My pouzijeme nase dva vektory, 
+    ktere sloucime do jednoho. Dale specifikujeme, kolik radku a sloupcu ocekavame. Nakonec rekneme R, 
+    zda ma matici plnit hodnotami pres radky (byrow) nebo pres sloupce. Vytvorte matici big_bang z vektoru sledovanost a 
+    hodnoceni_divaku tak, aby radek matice vyjadroval epizodu.
+  CorrectAnswer: big_bang <- matrix(data = c(sledovanost, hodnoceni_divaku), nrow = 4, ncol = 2, byrow = FALSE)
+  AnswerTests: omnitest(correctExpr='big_bang <- matrix(data = c(sledovanost, hodnoceni_divaku), nrow = 4, ncol = 2, byrow = FALSE)')
+  Hint: Urcili jste spravny pocet radku a sloupcu? Vyplnujete matici tak, aby hodnoty prvniho sloupce urcovali sledovanost a 
+    druheho sloupce hodnoceni?
+
+- Class: mult_question
+  Output: Jake dimenze ma nase matice?
+  CorrectAnswer: 4,2
+  AnswerChoices: 1,1;4,2;2,4;2,2
+  AnswerTests: omnitest(correctVal='4,2', correctExpr='2')
+  Hint: Napiste svoji odpoved a stisknete Enter. Dimenze matice muzete zjistit pomoci funkce dim. 
+  
+- Class: text
+  Output: Pojdme zkusit, co by se stalo kdybychom hodnoty vyplnili pres radky.  
+  
+- Class: cmd_question
+  Output: Pojdme zkusit, co by se stalo kdybychom hodnoty vyplnili pres radky. Vytvorte stejnou matici, ale tentokrat specifikujte
+    byrow = TRUE. Vysledek neukladejte do zadneho objektu.
+  CorrectAnswer: matrix(data = c(sledovanost, hodnoceni_divaku), nrow = 4, ncol = 2, byrow = TRUE)
+  AnswerTests: omnitest(correctExpr='matrix(data = c(sledovanost, hodnoceni_divaku), nrow = 4, ncol = 2, byrow = TRUE)')
+  Hint: Urcili jste spravny pocet radku a sloupcu? Vyplnujete matici pres radky (byrow)?
+
+- Class: text
+  Output: Jak vidite, vektory teto matice nejsou konzistentni. Prvni 2 elementy prvniho sloupce oznacuji sledovanost a posledni 2 
+    hodnoceni divaku. Zpusob, jakym budete definovat matici zalezi na vasich datech a na tom, v jake forme je chcete pouzit pro 
+    dalsi analyzu.
+
+- Class: text
+  Output: Dalsimi zpusoby, jak vytvorit majici z vektoru je pomoci funkci cbind a rbind. cbind slouci vektory jako sloupce, 
+    rbind slouci vektory jako radky.
+
+- Class: cmd_question
+  Output: Abychom nezapomneli, co sloupce vyjadruji, muzeme jim pridit nazvy. Pojmenujte sloupce matice big_bang "sledovanost" a 
+    "hodnoceni."
+  CorrectAnswer: colnames(big_bang) <- c("sledovanost", "hodnoceni")
+  AnswerTests: omnitest(correctExpr='colnames(big_bang) <- c("sledovanost", "hodnoceni")')
+  Hint: Vzpomente si, ze nazev sloupcu muzeme zmenit pomoci funkce colnames. Podivejte se na napovedu ?colnames
+
+
+- Class: cmd_question
+  Output: Ted uz vime, co vyjadruji jednotlive sloupce. Pridejme sloupec s cislem serie. Pridejte prvni sloupec s vektorem 
+    "serie 9", "serie 10", "serie 11" a "serie 12". Pouzijte funkci rbind nebo cbind. Vysledek neprirazujte k zadnemu objektu.
+  CorrectAnswer: cbind(c("serie 9", "serie 10", "serie 11", "serie 12"), big_bang)
+  AnswerTests: omnitest(correctExpr='cbind(c("serie 9", "serie 10", "serie 11", "serie 12"), big_bang)')
+  Hint: Vzpomente si, ze funkce cbind slucuje vektory jako sloupce a funkce rbind slucuje vektory jako radky. Pouzijte ?cbind a
+    ?rbind pro vice informaci.
+
+- Class: text
+  Output: Vsimnete si, ze numericke hodnoty nasi matice byly zmeneny na textove (character). To proto, ze objekty "matrix"" 
+    mohou nest pouze jeden typ dat. V pripade ruznych typu dat R automaticky zmeni hodnoty na nizsi uroven. 
+
+- Class: cmd_question
+  Output: Pokud chceme pojmenovat radky matice, muzete tak udelat podobne jako u sloupcu. Pojmenujte radky matice big_bang 
+    "serie 9", "serie 10", "serie 11" a "serie 12"
+  CorrectAnswer: rownames(big_bang) <- c("serie 9", "serie 10", "serie 11", "serie 12")
+  AnswerTests: omnitest(correctExpr='rownames(big_bang) <- c("serie 9", "serie 10", "serie 11", "serie 12")')
+  Hint: Vzpomente si, ze nazev radku muzeme zmenit pomoci funkce rownames. Podivejte se na napovedu ?rownames
+  
+- Class: cmd_question
+  Output: Rekneme, ze nas dale zajima rok vydani. Omylem ale pridame pouze sloupec, ktery ma pouze 3 hodnoty. 
+    Pomoci funkce cbind pridejte vektor, ktery bude obsahovat 2016, 2017 a 2018. Vysledek neukladejte do noveho objektu.   
+  CorrectAnswer: cbind(big_bang, c(2016, 2017, 2018))
+  AnswerTests: omnitest(correctExpr='cbind(big_bang, c(2016, 2017, 2018))')
+  Hint: Vzpomente si, ze funkce cbind slucuje vektory jako sloupce. Pouzijte ?cbind pro vice informaci. Priradili jste rok vydani 
+    jako treti sloupec nove matice?
+
+- Class: text
+  Output: Stalo se neco divneho. R vytvorilo novou matici, prestoze jsme zadali pouze 3 hodnoty noveho vektoru. Jak mohlo R vedet, 
+    jakou hodnotu ma pouzit pro posledni radek noveho sloupce?
+
+- Class: text
+  Output: Vsimnete si, ze pod novou matici R vytisklo warovani "number of rows of result is not a multiple of vector length". R nam
+    tim dava najevo, ze neco neni v poradku. R bude automaticky recyklovat hodnoty vektoru dokud nedosahne pozadovasne delky (4 v nasem
+    pripade). Tato vlastnost je dvojsecna zbran. Muze tak snadno dojit k chybe a vzdy si novy vektor dobre zkontrolujte!
+
+- Class: cmd_question
+  Output: Jednotlive radky/sloupce muzeme vyfiltrovat bud pomoci cisel nebo jmen (pokud radky/sloupce nejaka jmena maji). 
+    Vyfiltrujte prvni sloupec pomoci cisla sloupce.
+  CorrectAnswer: big_bang[, 1]
+  AnswerTests: omnitest(correctExpr='big_bang[, 1]')
+  Hint: Matice o i radcich a j sloupcich muzeme filtrovat pomoci [i,j].
+  
+- Class: cmd_question
+  Output: Vyfiltrujte radek, ktery odpovida "serii 10" pomoci jeho nazvu.
+  CorrectAnswer: big_bang["serie 10", ]
+  AnswerTests: omnitest(correctExpr='big_bang["serie 10", ]')
+  Hint: Matice o i radcich a j sloupcich muzeme filtrovat pomoci [i,j].
+
+- Class: cmd_question
+  Output: Vyfiltrujte element v druhem radku a druhem sloupci.
+  CorrectAnswer: big_bang[2, 2]
+  AnswerTests: omnitest(correctExpr='big_bang[2, 2]')
+  Hint: Matice o i radcich a j sloupcich muzeme filtrovat pomoci [i,j].
+  
+- Class: cmd_question
+  Output: Subsetovani radku/sloupcu je vhodne pro vypocet metrik pro ruzne skupiny nebo jednotlive promenne v matici.
+    Funkci mean jsme si jeste nepredstavili, ale asi neni prakvapenim, ze vypocita prumernou hodnotu vektoru. Vypocitejte 
+    prumernou hodnotu sledovanosti za pouziti funkce mean a matice big_bang. Vysledek ulozte do objektu prumerna_sledovanost.
+  CorrectAnswer: prumerna_sledovanost <- mean(big_bang[, 1])
+  AnswerTests: omnitest(correctExpr='prumerna_sledovanost <- mean(big_bang[, 1])')
+  Hint: Pouzili jste funkci mean a spravny sloupec matice big_bang?
+
+- Class: cmd_question
+  Output: Nyni pridejte do matice big_bang pomoci funkce cbind treti sloupec (nemusite ho pojemnovat), ktery bude vyjadrovat 
+    rozdil mezi sledovanosti dane serie a prumernou sledovanosti. Novou matici o trech sloupcich ulozte do objektu big_bang.
+  CorrectAnswer: big_bang <- cbind(big_bang, c(big_bang[, 1] - prumerna_sledovanost))
+  AnswerTests: omnitest(correctExpr='big_bang <- cbind(big_bang, c(big_bang[, 1] - prumerna_sledovanost))')
+  Hint: Pouzili jste funkci cbind spravne ?cbind. Priradili jste novy sloupec jako treti sloupec nove matice? Odecetli jste
+    prumernou_sledovanost od spravneho sloupce matice?
+    
+- Class: text
+  Output: Protoze jsou tyto operace caste existuji pro ne v R specialni funkce colMeans, rowMeans, colSums a rowSums.
+  
+- Class: text
+  Output: To je vse na matice. Doufame, ze jste se dozvedeli neco zajimaveho :)
