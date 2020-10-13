@@ -10,7 +10,7 @@
   Output: Tato lekce byla inspirovana kurzem R Programming (https://swirlstats.com/)
 
 - Class: text
-  Output: Nejjednodussi a nejcasteji pouzivanym datovym objektem v R je vektor.
+  Output: Nejjednodussim a nejcasteji pouzivanym datovym objektem v R je vektor.
 
 - Class: text
   Output: 'Existuji dva typy vektoru: atomicke vektory a listy. Atomicky vektor 
