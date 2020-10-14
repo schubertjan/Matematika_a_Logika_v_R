@@ -33,9 +33,6 @@
   Output: Vytvorili jsme tedy 2 vektory. Co kdyz se ale chceme podivat na oba vektory v jedne tabulce a porovnat, jak 
     spolu sledovanost a hodnoceni souvisi?
 
-- Class: text
-  Output: V R k vytvoreni matice muzeme pouzit nekolik zbusobu. My si nejprve ukazeme funkci matrix.
-  
 - Class: cmd_question
   Output: V R k vytvoreni matice muzeme pouzit nekolik zbusobu. My si nejprve ukazeme funkci matrix. Podivejte se na 
     napovedu k funkci matrix.
@@ -55,14 +52,11 @@
 
 - Class: mult_question
   Output: Jake dimenze ma nase matice?
-  CorrectAnswer: 4,2
-  AnswerChoices: 1,1;4,2;2,4;2,2
-  AnswerTests: omnitest(correctVal='4,2', correctExpr='2')
+  CorrectAnswer: 4 radky 2 sloupce
+  AnswerChoices: 1 radek 1 sloupec;4 radky 2 sloupce;2 radky 4 sloupce;2 radky 2 sloupce
+  AnswerTests: omnitest(correctVal='4 radky 2 sloupce', correctExpr='2')
   Hint: Napiste svoji odpoved a stisknete Enter. Dimenze matice muzete zjistit pomoci funkce dim. 
-  
-- Class: text
-  Output: Pojdme zkusit, co by se stalo kdybychom hodnoty vyplnili pres radky.  
-  
+
 - Class: cmd_question
   Output: Pojdme zkusit, co by se stalo kdybychom hodnoty vyplnili pres radky. Vytvorte stejnou matici, ale tentokrat specifikujte
     byrow = TRUE. Vysledek neukladejte do zadneho objektu.
@@ -76,11 +70,11 @@
     dalsi analyzu.
 
 - Class: text
-  Output: Dalsimi zpusoby, jak vytvorit majici z vektoru je pomoci funkci cbind a rbind. cbind slouci vektory jako sloupce, 
+  Output: Dalsimi zpusoby, jak vytvorit matici z vektoru je pomoci funkci cbind a rbind. cbind slouci vektory jako sloupce, 
     rbind slouci vektory jako radky.
 
 - Class: cmd_question
-  Output: Abychom nezapomneli, co sloupce vyjadruji, muzeme jim pridit nazvy. Pojmenujte sloupce matice big_bang "sledovanost" a 
+  Output: Abychom nezapomneli, co sloupce vyjadruji, muzeme jim priradit nazvy. Pojmenujte sloupce matice big_bang "sledovanost" a 
     "hodnoceni."
   CorrectAnswer: colnames(big_bang) <- c("sledovanost", "hodnoceni")
   AnswerTests: omnitest(correctExpr='colnames(big_bang) <- c("sledovanost", "hodnoceni")')
@@ -89,7 +83,8 @@
 
 - Class: cmd_question
   Output: Ted uz vime, co vyjadruji jednotlive sloupce. Pridejme sloupec s cislem serie. Pridejte prvni sloupec s vektorem 
-    "serie 9", "serie 10", "serie 11" a "serie 12". Pouzijte funkci rbind nebo cbind. Vysledek neprirazujte k zadnemu objektu.
+    "serie 9", "serie 10", "serie 11" a "serie 12". Pouzijte funkci rbind nebo cbind (podle toho, ktera se na prirazeni sloupce hodi). 
+    Vysledek neprirazujte k zadnemu objektu.
   CorrectAnswer: cbind(c("serie 9", "serie 10", "serie 11", "serie 12"), big_bang)
   AnswerTests: omnitest(correctExpr='cbind(c("serie 9", "serie 10", "serie 11", "serie 12"), big_bang)')
   Hint: Vzpomente si, ze funkce cbind slucuje vektory jako sloupce a funkce rbind slucuje vektory jako radky. Pouzijte ?cbind a
@@ -108,7 +103,8 @@
   
 - Class: cmd_question
   Output: Rekneme, ze nas dale zajima rok vydani. Omylem ale pridame pouze sloupec, ktery ma pouze 3 hodnoty. 
-    Pomoci funkce cbind pridejte vektor, ktery bude obsahovat 2016, 2017 a 2018. Vysledek neukladejte do noveho objektu.   
+    Pomoci funkce cbind pridejte vektor, ktery bude obsahovat 2016, 2017 a 2018 (k puvodni matici tedy pridejte novy vektor zprava).
+    Vysledek neukladejte do noveho objektu.   
   CorrectAnswer: cbind(big_bang, c(2016, 2017, 2018))
   AnswerTests: omnitest(correctExpr='cbind(big_bang, c(2016, 2017, 2018))')
   Hint: Vzpomente si, ze funkce cbind slucuje vektory jako sloupce. Pouzijte ?cbind pro vice informaci. Priradili jste rok vydani 
@@ -125,13 +121,13 @@
 
 - Class: cmd_question
   Output: Jednotlive radky/sloupce muzeme vyfiltrovat bud pomoci cisel nebo jmen (pokud radky/sloupce nejaka jmena maji). 
-    Vyfiltrujte prvni sloupec pomoci cisla sloupce.
+    Vyfiltrujte prvni sloupec pomoci CISLA sloupce.
   CorrectAnswer: big_bang[, 1]
-  AnswerTests: omnitest(correctExpr='big_bang[, 1]')
+  AnswerTests: omnitest(correctExpr='big_bang[, 1]', )
   Hint: Matice o i radcich a j sloupcich muzeme filtrovat pomoci [i,j].
   
 - Class: cmd_question
-  Output: Vyfiltrujte radek, ktery odpovida "serii 10" pomoci jeho nazvu.
+  Output: Vyfiltrujte radek, ktery odpovida "serii 10" pomoci jeho NAZVU.
   CorrectAnswer: big_bang["serie 10", ]
   AnswerTests: omnitest(correctExpr='big_bang["serie 10", ]')
   Hint: Matice o i radcich a j sloupcich muzeme filtrovat pomoci [i,j].
@@ -148,15 +144,16 @@
     prumernou hodnotu sledovanosti za pouziti funkce mean a matice big_bang. Vysledek ulozte do objektu prumerna_sledovanost.
   CorrectAnswer: prumerna_sledovanost <- mean(big_bang[, 1])
   AnswerTests: omnitest(correctExpr='prumerna_sledovanost <- mean(big_bang[, 1])')
-  Hint: Pouzili jste funkci mean a spravny sloupec matice big_bang?
+  Hint: Pouzili jste funkci mean a spravny sloupec matice big_bang? Ulozili jste vysledek do
+    objektu prumerna_sledovanost?
 
 - Class: cmd_question
-  Output: Nyni pridejte do matice big_bang pomoci funkce cbind treti sloupec (nemusite ho pojemnovat), ktery bude vyjadrovat 
-    rozdil mezi sledovanosti dane serie a prumernou sledovanosti. Novou matici o trech sloupcich ulozte do objektu big_bang.
-  CorrectAnswer: big_bang <- cbind(big_bang, c(big_bang[, 1] - prumerna_sledovanost))
-  AnswerTests: omnitest(correctExpr='big_bang <- cbind(big_bang, c(big_bang[, 1] - prumerna_sledovanost))')
+  Output: Nyni pridejte do matice big_bang pomoci funkce cbind treti sloupec (nemusite ho pojmenovat), ktery bude vyjadrovat 
+    rozdil mezi sledovanosti dane serie a prumernou sledovanosti. Novou matici o trech sloupcich nemusite ukladat do noveho objektu.
+  CorrectAnswer: cbind(big_bang, big_bang[, 1] - prumerna_sledovanost)
+  AnswerTests: omnitest(correctExpr='cbind(big_bang, big_bang[, 1] - prumerna_sledovanost)')
   Hint: Pouzili jste funkci cbind spravne ?cbind. Priradili jste novy sloupec jako treti sloupec nove matice? Odecetli jste
-    prumernou_sledovanost od spravneho sloupce matice?
+    prumernou_sledovanost od spravneho sloupce matice? Ulozili jste vysledek do objektu big_bang?
     
 - Class: text
   Output: Protoze jsou tyto operace caste existuji pro ne v R specialni funkce colMeans, rowMeans, colSums a rowSums.
