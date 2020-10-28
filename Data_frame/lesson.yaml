@@ -1,0 +1,188 @@
+- Class: meta
+  Course: Matematika a Logika v R
+  Lesson: Data_frame
+  Author: Ivan Petrusek, Jan Schubert
+  Type: Standard
+  Organization: Fakula socialnich ved Univerzity Karlovy
+  Version: 2.4.3
+
+- Class: text
+  Output: V tomto cviceni si procvicime, jak pouzivat data frame (datove matice).
+
+- Class: text
+  Output: Data frame je specifickou tridou v R ktera se pouziva v ukladani tabulkovych dat s radky a
+    sloupci.
+  
+- Class: mult_question
+  Output: Jakou jinou tridu muzete pouzit k ukladani tabulkovych dat?
+  CorrectAnswer: matrix
+  AnswerChoices: matrix;numeric vector;character vector
+  AnswerTests: omnitest(correctVal='matrix', correctExpr='1')
+  Hint: Napiste svoji odpoved a stisknete Enter. Tabulky jsou objekty s radky a sloupci, v matematice
+    se jim take nekdy rika...?
+
+- Class: cmd_question
+  Output: Abychom si ukazali hlavni rozdil mezi matrix a data frame, vytvorime si nejdrive matrix.
+    Vytvorte matrix M, ktery bude mit 2 sloupce 2 radky a hodnoty 1 a 2 v prvnim sloupci a 3 a 4 v druhem 
+    sloupci. Pouzijte funkci cbind. 
+  CorrectAnswer: M <- cbind(c(1,2), c(3,4))
+  AnswerTests: omnitest(correctExpr='M <- cbind(c(1,2), c(3,4))')
+  Hint: Pouzili jste funckci cbind? Ulozili jste vysledek do objektu M? Jsou hodnoty v prvnim sloupci
+    1 a 2? Jsou hodnoty v druhem sloupci 3 a 4?
+
+- Class: cmd_question
+  Output: Vytisknete vasi novou matici.
+  CorrectAnswer: print(M)
+  AnswerTests: omnitest(correctExpr='print(M)')
+  Hint: Pouzili jste spravnou funkci na vytisknuti objektu? Vytiskli jste spravny objekt?
+
+- Class: text
+  Output: Skvele, mame matrix, ktery muzeme pouzit na nasi analyzu. Rekneme, ze jsme zapomnetlivi
+    a chteli bychom si poznamenat, co jednotlive radky vyznacuji.
+    
+- Class: cmd_question
+  Output: Pomoci funkce cbind pridejte vektor, ktery bude mit hodnoty A a B. Jako prvni pouzijte 
+    vasi matici M a pote novy vektor. Novy objekt nemusite ukladat do zadneho objektu.
+  CorrectAnswer: cbind(M, c("A", "B"))
+  AnswerTests: omnitest(correctExpr='cbind(M, c("A", "B"))')
+  Hint: Pouzili jste funkci cbind? Pridali jste nejdrive vasi matici M a pote novy vektor? Dali jste
+    novemu vektoru hodnoty A a B? Novy objekt nemusite ukladat. 
+
+- Class: text
+  Output: Hmmm, stalo se neco podivneho. Nase numericke sloupce se zmenili na textove. To je proto, 
+    ze objekt tridy matrix dokaze nest pouze jeden typ hodnot. Jakmile jsme k ciselnym hodnotam 
+    pridali textove, ponizil vsechny hodnoty na tridu, kterou dokaze odhadnout, tedy na hodnoty textove.
+
+- Class: text
+  Output: Jednou z moznosti, jak pridat textove hodnoty k matici je priradit je jako jmena radku.
+    Co kdyz ale chceme pridat vice sloupcu s textovymi hodnotami? K tomu nam poslouzi objekt tridy data frame.
+
+- Class: cmd_question
+  Output: Data frame muzeme vytvorit pomoci funkce data.frame. Zobrazte si nyni napovedu k teto funkci.
+  CorrectAnswer: ?data.frame
+  AnswerTests: omnitest(correctExpr='?data.frame')
+  Hint: Napovedu si muzete zobrazit pomoci ?. 
+  
+- Class: text
+  Output: Jak vidite, prvni argument funkce je ... a docteme se, ze data muzeme bud specific primo nebo
+    pouzit existujici objekt. Pojdme si nejdrive ukazat, jak pouzit existujici objekt.
+
+- Class: cmd_question
+  Output: Vytvorte z matice M data frame a pojmenujte ho df.
+  CorrectAnswer: df <- data.frame(M)
+  AnswerTests: omnitest(correctExpr='df <- data.frame(M)')
+  Hint: Pouzili jste spravnou funkci na vytvoreni data frame? Pouzili jste matici M? 
+  
+- Class: cmd_question
+  Output: Vytisknete tridu objektu df.
+  CorrectAnswer: class(df)
+  AnswerTests: omnitest(correctExpr='class(df)')
+  Hint: Pouzili jste funkci class na zjisteni tridy objektu? Pouzili jste spravny objekt df?
+
+- Class: text
+  Output: To bylo jednoduche. Jak vidite, vytvorili jsme objekt nove tridy. Pojdme si ho jeste 
+    vytisknout, abychom vedeli jak vypada. 
+
+- Class: cmd_question
+  Output: Vytisknete objekt df.
+  CorrectAnswer: print(df)
+  AnswerTests: omnitest(correctExpr='print(df)')
+  Hint: Pouzili jste spravnou funkci k vytisteni objektu? Vytiskli jste spravny objekt df?
+  
+- Class: text
+  Output: Data frame je vlastne rozsirenou tridou objektu matrix. Vetsina funkci, ktere 
+    jsme pouzivali na matrix, muzeme pouzit i zde. 
+
+- Class: cmd_question
+  Output: Prejmenujte sloupce objektu df na sloupec_1 a sloupec_2.
+  CorrectAnswer: colnames(df) <- c("sloupec_1", "sloupec_2")
+  AnswerTests: omnitest(correctExpr='colnames(df) <- c("sloupec_1", "sloupec_2")')
+  Hint: Jmena data frame nebo matice muzete zmenit pomoci funkce colnames. Priradili
+    jste jmena spravnemu objektu?
+
+- Class: cmd_question
+  Output: Novy sloupec muzete do data frame pridat nekolika zpusoby. Prvni je za pouziti symbolu $, 
+    tedy DF$nazev_novy_sloupec <- hodnota. Zkuste nyni pridat novy sloupec id, ktery bude mit 
+    hodnoty A a B.
+  CorrectAnswer: df$id <- c("A", "B")
+  AnswerTests: omnitest(correctExpr='df$id <- c("A", "B")')
+  Hint: Pouzili jste spravny syntax DF$nazev_promenne <- hodnota? Pouzili jste spravne jmeno sloupce
+    id? Priradili jste ho do spravneho objektu df?
+    
+- Class: cmd_question
+  Output: Vytisknete objekt df.
+  CorrectAnswer: print(df)
+  AnswerTests: omnitest(correctExpr='print(df)')
+  Hint: Pouzili jste spravnou funkci k vytisteni objektu? Vytiskli jste spravny objekt df?
+
+- Class: cmd_question
+  Output: Vse vypada dobre. Uzitecnou funkci k zjisteni vlastnosti data frame je funkce str(), 
+    ktera ma jedniny argument a to sice objekt, ktery chcete vytisknout. Pouzijte funkci str na vas
+    objekt df.
+  CorrectAnswer: str(df)
+  AnswerTests: omnitest(correctExpr='str(df)')
+  Hint: Pouzili jste spravnou funkci str? Pouzili jste objekt df uvnitr teto funkce? 
+
+- Class: mult_question
+  Output: Jake tridy je prvni sloupec?
+  CorrectAnswer: numeric
+  AnswerChoices: logical;numeric;character
+  AnswerTests: omnitest(correctVal='numeric', correctExpr='2')
+  Hint: Napiste svoji odpoved a stisknete Enter.
+
+- Class: text
+  Output: Druhy zpusob jak data frame vytvorit je tak, ze primo definujete jeho sloupce. Takto by
+    vypadal syntax na vytvoreni stejneho data frame jako df ... data.frame(sloupec_1 = c(1,2), 
+    sloupec_2 = c(3,4), id = c("A", "B"))
+
+- Class: cmd_question
+  Output: Subsetting radku a sloupcu funguje v data frame stejne jako v matrix. Vytisknete druhy 
+    radek prvniho sloupce. 
+  CorrectAnswer: df[2, 1]
+  AnswerTests: omnitest(correctExpr='df[2, 1]')
+  Hint: Subsetting muzete provest pomoci "[radek,sloupec]"? Pouzili jste objekt df?
+
+- Class: text
+  Output: Vetsinou ale budete data na vasi analyzu exportovat z externiho zdroje. Vetsina dat se 
+    nachazi ve formatu csv. K tomu pouzijete funkci read.csv
+
+- Class: cmd_question
+  Output: Zobrazte si nyni napovedu k funkci read.csv.
+  CorrectAnswer: ?read.csv
+  AnswerTests: omnitest(correctExpr='?read.csv')
+  Hint: Napovedu si muzete zobrazit pomoci ?. 
+
+- Class: text
+  Output: Prvnim argumentem je "file", v nemz specifikujete, ktery soubor chcete nacist. Muze to byt
+    cesta k souboru ulozenem na vasem pocitaci nebo na ulozisti na internetu.
+
+- Class: cmd_question
+  Output: Nactete pomoci funkce read.csv soubor z teto stranky 
+    "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv"
+    a ulozte ho do objektu pivo.
+  CorrectAnswer: pivo <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv")
+  AnswerTests: omnitest(correctExpr='pivo <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv")')
+  Hint: Pouzili jste spravnou adresu, z ktere soubor nacist? Pouzili jste funkci read.csv?
+  
+- Class: cmd_question
+  Output: Podivejte se na prvnich 10 radku data frame pivo.
+  CorrectAnswer: head(pivo, 10)
+  AnswerTests: omnitest(correctExpr='head(pivo, 10)')
+  Hint: Pouzili jste funkci head na zobrazenich prvnich x radku? Specifikovali jste, ze chcete vytisknout
+    10 radku? Pouzili jste spravny objekt pivo?
+
+- Class: text
+  Output: Jak vidite, tento data frame obsahuje data o znackach piv, ktere vyhrali cenu na Great
+    American Beer Festival.
+
+- Class: text
+  Output: V nasem pripade, mel csv soubor symboly na oddeleni sloupcu a desetinnych mist, ktere se 
+    shodovaly s default hodnotami funkce read.csv ... sep = "," a dec = "."
+    
+- Class: text
+  Output: Casto se ale v ceskem prostredi setkate s csv soubory, ktere jsou oddelene strednikem a 
+    pouzivaji carku k oddeleni desetinneho mista. V takovem pripade byste pouzili nasledujici 
+    argumenty ... read.csv("vas_soubor", sep = ",", dec = ".")
+
+- Class: text
+  Output: Doufam, ze jste si data frame osvojili. Budeme ho pouzivat v budoucich hodinach casto...
